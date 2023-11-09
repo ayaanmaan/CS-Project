@@ -18,7 +18,7 @@ def intcin(msg):
             pass
 
 person_type_keywords = {'employee':{'title':'job', 'date':'date of hire'},'prisoner':{'title':'sentence', 'date':'incarceration date'}}
-                                    
+#rec_type is 'employee' or 'prisoner'. This variable shortens code common to both employee and prisoner records.                                    
 def rec_entry(rec_type):
     
     unique_id = False
