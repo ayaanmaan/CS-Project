@@ -2,7 +2,9 @@ import csv
 from tabulate import tabulate as tab
 
 def intcin(msg):
-    
+    """
+    Integer input error handling
+    """
     inp = False
 
     while not inp:
@@ -72,18 +74,3 @@ def rec_remove(rec_type):
 
         for row in recs:
             csv.writer.writerow(row)
-        
-
-
-
-
-
-
-
-
-
-
-
-        
-        
-    
