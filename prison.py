@@ -1,7 +1,13 @@
+#Import required libraries
+
 import csv
-from tabulate import tabulate as tab
+from tabulate import tabulate as tab    #'Tabulate' library required
+                                        #Use <pip install tabulate> in command prompt to install if requirements not satisfied
 
 def intcin(msg):
+    
+    #Error handling for invalid input when integer required
+    
     inp = False
     while not inp:
         try:
@@ -11,10 +17,13 @@ def intcin(msg):
             print('Invalid Input - Expected an integer')
             pass
 
-rec_type = {1:'employee', 2:'prisoner'}
-person_type_keywords = {'employee':{'title':'job', 'date':'date of hire'},'prisoner':{'title':'sentence', 'date':'incarceration date'}}
+rec_type = {1:'employee', 2:'prisoner'} 
+person_type_keywords = {'employee':{'title':'job', 'date':'date of hire'},'prisoner':{'title':'sentence', 'date':'incarceration date'}} #Repeatedly used keywords in program
 
 def rec_entry(rec_type_num):
+
+    #New record entry
+    
     global rec_type
     unique_id = False
     while not unique_id:
@@ -33,6 +42,9 @@ def rec_entry(rec_type_num):
             pass
 
 def rec_search(rec_type_num):
+
+    #Record search by ID
+    
     global rec_type
     rec_id = intcin(f"Enter {rec_type[rec_type_num]} ID to search: ")
     with open(f'{rec_type[rec_type_num]}.csv', newline='') as rec_f:
@@ -45,11 +57,17 @@ def rec_search(rec_type_num):
             print('\nRECORD NOT FOUND')
 
 def rec_display(rec_type_num):
+
+    #Display records
+    
     global rec_type
     with open(f'{rec_type[rec_type_num]}.csv', newline='') as rec_f:
         print(tab(list(csv.reader(rec_f)), headers=[f"{rec_type[rec_type_num].capitalize()} ID", f"{rec_type[rec_type_num].capitalize()} Name", f"{person_type_keywords[rec_type[rec_type_num]]['title'].capitalize()}", f"{person_type_keywords[rec_type[rec_type_num]]['date'].capitalize()}"],tablefmt='outline'))
 
 def rec_remove(rec_type_num):
+
+    #Remove records by ID
+    
     global rec_type
     rec_id = intcin(f"Enter {rec_type[rec_type_num]} ID to remove: ")
     with open(f'{rec_type[rec_type_num]}.csv', newline='') as rec_f:
@@ -60,6 +78,9 @@ def rec_remove(rec_type_num):
             csv.writer(rec_f).writerow(row)
 
 def menu1():
+
+    #Initial menu
+    
     global rec_type
     while True:
         command_num = intcin(f'''
@@ -77,6 +98,9 @@ Enter a command number: ''')
             print('Invalid command number. Choose a number from 1 to 3 for corresponding commands.')
 
 def menu2(rec_type_num):
+
+    #Command menu
+    
     global rec_type
     while True:
         command_num = intcin(f'''
@@ -123,4 +147,4 @@ print('''
                            |___/
 ''')
 
-menu1()
+menu1() #Initialise program
